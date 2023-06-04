@@ -11,7 +11,7 @@
 
 
 
-# Variation 3: Naive Approach
+# Variation 3: Naive Approach O(n^3)
 
 class Solution:
     def nCr(self, n, r):
@@ -31,3 +31,26 @@ class Solution:
                 temp.append(self.nCr(row-1, col-1))
             ans.append(temp)
         return ans
+    
+# Variation 3: Optimal Approach O(n^2)
+
+
+def generateRow(row):
+    ans = 1
+    ansRow = [1]
+
+    for col in range(1, row):
+        ans *= (row-col)
+        ans //= col
+        ansRow.append(ans)
+    return ansRow
+
+def printPascal(n:int):
+    # Write your code here.
+    # Return a list of lists.
+    ans = []
+
+    for row in range(1, n+1):
+        ans.append(generateRow(row))
+    return ans
+    
